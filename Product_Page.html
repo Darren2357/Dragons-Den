@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragons Den - Products</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 35px 35px 150px;
+      min-height: 100vh;
+      background: #F5EBD8;
+      color: #493727;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .page-title {
+      margin: 0 0 40px;
+      color: #A51F1F;
+      font-family: "Shojumaru", cursive;
+      font-size: 36px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .product {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 35px;
+      padding: 20px;
+      background: #E9D9B8;
+      border-radius: 10px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 280px;
+      background: #EFE2C9;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h2 {
+      margin: 0 0 20px;
+      color: #8B642C;
+      font-family: "Shojumaru", cursive;
+      font-size: 23px;
+      font-weight: normal;
+    }
+
+    .product-info p {
+      margin: 0 0 18px;
+      color: #493727;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .product-info strong {
+      color: #8B642C;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .product.reverse .product-image {
+      order: 2;
+    }
+
+    .product.reverse .product-info {
+      order: 1;
+    }
+
+    /* QUANTITY SELECTOR */
+    .quantity-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .quantity-label {
+      color: #8B642C;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quantity-control button {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 6px;
+      background: #A51F1F;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .quantity-control button:hover {
+      background: #821818;
+    }
+
+    .quantity-number {
+      min-width: 15px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #493727;
+    }
+
+    /* BACK TO HOME */
+    .home-link {
+      display: block;
+      width: fit-content;
+      margin: 15px auto 25px;
+      color: #8B642C;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .home-link:hover {
+      color: #A51F1F;
+    }
+
+    /* FIXED ORDER SUMMARY BAR */
+    .cart-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      padding: 14px 25px;
+      background: #E9D9B8;
+      box-shadow: 0 -5px 20px rgba(73, 55, 39, 0.15);
+    }
+
+    .cart-content {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .cart-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cart-summary strong {
+      color: #A51F1F;
+      font-size: 17px;
+    }
+
+    .cart-summary span {
+      color: #493727;
+      font-size: 13px;
+    }
+
+    .checkout-button {
+      padding: 13px 22px;
+      border: none;
+      border-radius: 7px;
+      background: #A51F1F;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .checkout-button:hover {
+      background: #821818;
+    }
+
+    .checkout-button:disabled {
+      background: #A58D68;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 18px 18px 145px;
+      }
+
+      .page-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+      }
+
+      .product {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 25px;
+        padding: 12px;
+      }
+
+      .product.reverse .product-image,
+      .product.reverse .product-info {
+        order: initial;
+      }
+
+      .product-image {
+        height: 230px;
+      }
+
+      .product-info {
+        padding: 8px;
+      }
+
+      .product-info h2 {
+        font-size: 20px;
+      }
+
+      .cart-bar {
+        padding: 12px 15px;
+      }
+
+      .cart-content {
+        gap: 8px;
+      }
+
+      .cart-summary strong {
+        font-size: 15px;
+      }
+
+      .cart-summary span {
+        font-size: 12px;
+      }
+
+      .checkout-button {
+        padding: 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <h1 class="page-title">Our Products</h1>
+
+    <!-- ITEM 1 -->
+    <section class="product" data-id="xiaolongbao"
+      data-name="Xiao Long Bao" data-price="45000">
+
+      <div class="product-image">
+        <img src="https://drive.google.com/thumbnail?id=1_I8DS08WObWoBfezaB-1YSIh6VP5g8ME&sz=w2000"
+          alt="Xiao Long Bao">
+      </div>
+
+      <div class="product-info">
+        <h2>Xiao Long Bao</h2>
+
+        <p>
+          <strong>Description:</strong><br>
+          Delicate steamed dumplings with thin, pleated wrappers,
+          served in a bamboo basket. They're filled with savory meat
+          and hot broth, and typically served with dipping sauce and tea.
+        </p>
+
+        <p>
+          <strong>Price:</strong><br>
+          Rp 45.000
+        </p>
+
+        <div class="quantity-area">
+          <span class="quantity-label">Jumlah</span>
+          <div class="quantity-control">
+            <button type="button" class="minus" aria-label="Decrease Xiao Long Bao">−</button>
+            <span class="quantity-number">0</span>
+            <button type="button" class="plus" aria-label="Increase Xiao Long Bao">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITEM 2 -->
+    <section class="product reverse" data-id="friedrice"
+      data-name="Fried Rice" data-price="15000">
+
+      <div class="product-image">
+        <img src="https://drive.google.com/thumbnail?id=1pPCZJkxzKwSKhRnlxFkSFBFFbXCq1Ne3&sz=w2000"
+          alt="Fried Rice">
+      </div>
+
+      <div class="product-info">
+        <h2>Fried Rice</h2>
+
+        <p>
+          <strong>Description:</strong><br>
+          Fluffy rice stir-fried in a pan with crumbled seasoned beef,
+          scrambled egg, green peas, and diced carrots, lightly coated
+          in soy sauce.
+        </p>
+
+        <p>
+          <strong>Price:</strong><br>
+          Rp 15.000
+        </p>
+
+        <div class="quantity-area">
+          <span class="quantity-label">Jumlah</span>
+          <div class="quantity-control">
+            <button type="button" class="minus" aria-label="Decrease Fried Rice">−</button>
+            <span class="quantity-number">0</span>
+            <button type="button" class="plus" aria-label="Increase Fried Rice">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITEM 3 -->
+    <section class="product" data-id="greenbeans"
+      data-name="Green Beans" data-price="15000">
+
+      <div class="product-image">
+        <img src="https://drive.google.com/thumbnail?id=1rEQkXVcdXVUKKWU44OA7vUhd-92eX8Vn&sz=w2000"
+          alt="Green Beans">
+      </div>
+
+      <div class="product-info">
+        <h2>Green Beans</h2>
+
+        <p>
+          <strong>Description:</strong><br>
+          Blistered, tender-crisp green beans sautéed with minced garlic
+          and chili flakes, served on a decorative platter.
+        </p>
+
+        <p>
+          <strong>Price:</strong><br>
+          Rp 15.000
+        </p>
+
+        <div class="quantity-area">
+          <span class="quantity-label">Jumlah</span>
+          <div class="quantity-control">
+            <button type="button" class="minus" aria-label="Decrease Green Beans">−</button>
+            <span class="quantity-number">0</span>
+            <button type="button" class="plus" aria-label="Increase Green Beans">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ITEM 4 -->
+    <section class="product reverse" data-id="sweetandsourpork"
+      data-name="Sweet and Sour Pork" data-price="40000">
+
+      <div class="product-image">
+        <img src="https://drive.google.com/thumbnail?id=1JV66sHBByZuVzwEXW2S9_QaKm59UZqo0&sz=w2000"
+          alt="Sweet and Sour Pork">
+      </div>
+
+      <div class="product-info">
+        <h2>Sweet and Sour Pork</h2>
+
+        <p>
+          <strong>Description:</strong><br>
+          Crispy battered bite-sized pieces tossed in a glossy,
+          tangy red-orange sauce with juicy pineapple chunks and
+          red and green bell peppers.
+        </p>
+
+        <p>
+          <strong>Price:</strong><br>
+          Rp 40.000
+        </p>
+
+        <div class="quantity-area">
+          <span class="quantity-label">Jumlah</span>
+          <div class="quantity-control">
+            <button type="button" class="minus" aria-label="Decrease Sweet and Sour Pork">−</button>
+            <span class="quantity-number">0</span>
+            <button type="button" class="plus" aria-label="Increase Sweet and Sour Pork">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK TO HOME -->
+    <a href="Main_Page.html" class="home-link">
+      ← Back to Home
+    </a>
+
+  </main>
+
+  <!-- FIXED CART BAR -->
+  <aside class="cart-bar">
+    <div class="cart-content">
+
+      <div class="cart-summary">
+        <strong id="cartTotal">Total: Rp 0</strong>
+        <span id="cartCount">Jumlah item: 0</span>
+      </div>
+
+      <button type="button" class="checkout-button"
+        id="checkoutButton" disabled>
+        Proceed to Payment →
+      </button>
+
+    </div>
+  </aside>
+
+  <script>
+    const products = document.querySelectorAll(".product");
+    const checkoutButton = document.getElementById("checkoutButton");
+
+    const rupiah = amount =>
+      "Rp " + amount.toLocaleString("id-ID");
+
+    // Restore previously selected quantities when returning from payment
+    const previousCart = JSON.parse(
+      localStorage.getItem("dragonCart") || "null"
+    );
+
+    if (previousCart && Array.isArray(previousCart.items)) {
+      products.forEach(product => {
+        const savedItem = previousCart.items.find(
+          item => item.id === product.dataset.id
+        );
+
+        if (savedItem) {
+          product.querySelector(".quantity-number").textContent =
+            savedItem.quantity;
+        }
+      });
+    }
+
+    function updateCart() {
+      let totalItems = 0;
+      let totalPrice = 0;
+      const cart = [];
+
+      products.forEach(product => {
+        const quantity = Number(
+          product.querySelector(".quantity-number").textContent
+        );
+
+        const price = Number(product.dataset.price);
+
+        if (quantity > 0) {
+          totalItems += quantity;
+          totalPrice += quantity * price;
+
+          cart.push({
+            id: product.dataset.id,
+            name: product.dataset.name,
+            price: price,
+            quantity: quantity
+          });
+        }
+      });
+
+      document.getElementById("cartTotal").textContent =
+        "Total: " + rupiah(totalPrice);
+
+      document.getElementById("cartCount").textContent =
+        "Jumlah item: " + totalItems;
+
+      checkoutButton.disabled = totalItems === 0;
+
+      // Save the order so the payment page can read it
+      localStorage.setItem("dragonCart", JSON.stringify({
+        items: cart,
+        totalItems: totalItems,
+        totalPrice: totalPrice
+      }));
+    }
+
+    products.forEach(product => {
+      const minusButton = product.querySelector(".minus");
+      const plusButton = product.querySelector(".plus");
+      const quantityNumber = product.querySelector(".quantity-number");
+
+      plusButton.addEventListener("click", () => {
+        let quantity = Number(quantityNumber.textContent);
+        quantityNumber.textContent = quantity + 1;
+        updateCart();
+      });
+
+      minusButton.addEventListener("click", () => {
+        let quantity = Number(quantityNumber.textContent);
+
+        if (quantity > 0) {
+          quantityNumber.textContent = quantity - 1;
+          updateCart();
+        }
+      });
+    });
+
+    checkoutButton.addEventListener("click", () => {
+      const savedCart = JSON.parse(
+        localStorage.getItem("dragonCart") || "{}"
+      );
+
+      if (!savedCart.totalItems) {
+        alert("Please select at least one item.");
+        return;
+      }
+
+      window.location.href = "Payment_Page.html";
+    });
+
+    updateCart();
+  </script>
+
+</body>
+</html>
