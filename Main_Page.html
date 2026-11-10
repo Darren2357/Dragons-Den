@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+
+    <title>Dragons Den</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 35px;
+            min-height: 100vh;
+            background: #F5EBD8;
+            color: #493727;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .website-title {
+            margin: 0;
+            font-family: "Shojumaru", cursive;
+            font-size: 42px;
+            font-weight: normal;
+            color: #A51F1F;
+            letter-spacing: 1px;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #C49A45;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            background: #A98035;
+        }
+
+        .account-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-menu {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            min-width: 130px;
+            padding: 8px;
+            background: #E9D9B8;
+            border-radius: 7px;
+            box-shadow: 0 5px 15px rgba(73, 55, 39, 0.2);
+            z-index: 10;
+        }
+
+        .account-menu[hidden] {
+            display: none;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #A51F1F;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .logout-btn:hover {
+            background: #821818;
+        }
+
+        /* BANNER IMAGE */
+        .banner {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 6;
+            margin-bottom: 30px;
+            background: #E9D9B8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+        }
+
+        /* IMAGE PLACEHOLDER */
+        .image-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #A58D68;
+            font-size: 45px;
+            pointer-events: none;
+        }
+
+        /* HIDE EMPTY IMAGES */
+        .banner img:not([src]),
+        .banner img[src=""],
+        .image-box img:not([src]),
+        .image-box img[src=""] {
+            display: none;
+        }
+
+        /* MIDDLE SECTION */
+        .middle-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* IMAGE BOX */
+        .image-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            background: #EFE2C9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* TEXT CONTENT */
+        .text-content {
+            padding: 20px;
+            background: #E9D9B8;
+            border-radius: 10px;
+        }
+
+        .text-content h2 {
+            margin: 0 0 15px;
+            color: #8B642C;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .text-content p {
+            margin: 0 0 15px;
+            color: #493727;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* BOTTOM THREE ITEMS */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .bottom-item {
+            width: 100%;
+        }
+
+        /* BOTTOM TEXT */
+        .bottom-text {
+            padding: 12px 5px;
+        }
+
+        .bottom-text h3 {
+            margin: 0 0 8px;
+            color: #8B642C;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .bottom-text p {
+            margin: 0;
+            color: #493727;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* IMAGE SPACING */
+        .bottom-item .image-box {
+            margin-bottom: 5px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 650px) {
+            body {
+                padding: 18px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .website-title {
+                font-size: 23px;
+            }
+
+            .nav-buttons {
+                width: 100%;
+            }
+
+            .nav-btn {
+                flex: 1;
+                padding: 10px 5px;
+                font-size: 11px;
+                text-align: center;
+            }
+
+            .banner {
+                aspect-ratio: 16 / 7;
+            }
+
+            .middle-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .text-content {
+                padding: 12px;
+            }
+
+            .bottom-section {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .bottom-text {
+                padding: 8px 2px;
+            }
+
+            .bottom-text h3 {
+                font-size: 13px;
+            }
+
+            .bottom-text p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <h1 class="website-title">
+            Dragons Den
+        </h1>
+
+        <nav class="nav-buttons">
+
+            <!-- ACCOUNT BUTTON -->
+            <div class="account-wrapper">
+
+                <button
+                    class="nav-btn"
+                    id="accountButton"
+                    type="button">
+                    Login / Sign Up
+                </button>
+
+                <!-- LOGOUT DROPDOWN -->
+                <div class="account-menu" id="accountMenu" hidden>
+
+                    <button
+                        class="logout-btn"
+                        id="logoutButton"
+                        type="button">
+                        Log Out
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUCT BUTTON -->
+            <a class="nav-btn" href="Product_Page.html" id="productButton">
+                Product
+            </a>
+
+        </nav>
+
+    </header>
+
+    <!-- LONG BANNER IMAGE -->
+    <section class="banner">
+
+        <img
+            src="https://drive.google.com/thumbnail?id=15Ihs_3bDxYRC3PHoh6jCq6uc582gW64E&sz=w2000"
+            alt="Dragons Den Banner"
+        >
+
+    </section>
+
+    <!-- MIDDLE IMAGE AND TEXT -->
+    <section class="middle-section">
+
+        <div class="image-box">
+
+            <img
+                src="https://drive.google.com/thumbnail?id=1_I8DS08WObWoBfezaB-1YSIh6VP5g8ME&sz=w2000"
+                alt="Xiao Long Bao"
+            >
+
+        </div>
+
+        <div class="text-content">
+
+            <h2>Xiao Long Bao</h2>
+
+            <p>
+                Xiao Long Bao are delicate steamed soup dumplings filled with seasoned
+                pork and rich, savoury broth, all wrapped in a thin, tender dough skin.
+                Each dumpling is carefully pleated and steamed in a traditional bamboo basket,
+                creating a delicate balance of texture and flavour.
+            </p>
+
+            <p>
+                <strong>A Taste of Shanghai's History</strong> are believed to have originated during the
+                late Qing Dynasty in the 19th century. Originally known as Nanxiang soup buns,
+                they gradually became one of Shanghai's most recognisable culinary specialties.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- BOTTOM THREE IMAGES AND TEXT -->
+    <section class="bottom-section">
+
+        <!-- ITEM 1 -->
+        <div class="bottom-item">
+
+            <div class="image-box">
+
+                <img
+                    src="https://drive.google.com/thumbnail?id=1pPCZJkxzKwSKhRnlxFkSFBFFbXCq1Ne3&sz=w2000"
+                    alt="Fried Rice"
+                >
+
+            </div>
+
+            <div class="bottom-text">
+
+                <h3>Fried Rice</h3>
+
+                <p>
+                    Fragrant rice wok-fried with fluffy eggs, fresh vegetables and
+                    savoury seasonings. A timeless Chinese classic
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="bottom-item">
+
+            <div class="image-box">
+
+                <img
+                    src="https://drive.google.com/thumbnail?id=1rEQkXVcdXVUKKWU44OA7vUhd-92eX8Vn&sz=w2000"
+                    alt="Green Beans"
+                >
+
+            </div>
+
+            <div class="bottom-text">
+
+                <h3>Green Beans</h3>
+
+                <p>
+                    Fresh green beans wok-fried with garlic and savoury seasonings,
+                    delivering a satisfying crunch and rich, aromatic flavour.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ITEM 3 -->
+        <div class="bottom-item">
+
+            <div class="image-box">
+
+                <img
+                    src="https://drive.google.com/thumbnail?id=1JV66sHBByZuVzwEXW2S9_QaKm59UZqo0&sz=w2000"
+                    alt="Sweet and Sour Pork"
+                >
+
+            </div>
+
+            <div class="bottom-text">
+
+                <h3>Sweet and Sour Pork</h3>
+
+                <p>
+                    Crispy, golden pieces of pork coated in a delicious sweet and tangy sauce,
+                    offering a satisfying combination of crisp texture and rich flavour.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- ACCOUNT LOGIN SYSTEM -->
+<script>
+
+// GET ACCOUNT ELEMENTS
+const accountButton = document.getElementById("accountButton");
+const accountMenu = document.getElementById("accountMenu");
+const logoutButton = document.getElementById("logoutButton");
+
+// CHECK SAVED LOGIN
+function updateAccount() {
+
+    const savedUser = localStorage.getItem("dragonUser");
+
+    if (savedUser) {
+
+        const user = JSON.parse(savedUser);
+
+        accountButton.textContent = user.displayName;
+        accountMenu.hidden = true;
+
+    } else {
+
+        accountButton.textContent = "Login / Sign Up";
+        accountMenu.hidden = true;
+
+    }
+
+}
+
+// CLICK ACCOUNT BUTTON
+accountButton.addEventListener("click", function() {
+
+    const savedUser = localStorage.getItem("dragonUser");
+
+    if (savedUser) {
+
+        accountMenu.hidden = !accountMenu.hidden;
+
+    } else {
+
+        window.location.href = "Login_Page.html";
+
+    }
+
+});
+
+// LOG OUT - OPEN EXIT CONFIRMATION PAGE
+logoutButton.addEventListener("click", function() {
+
+    // Keep login data until the user confirms
+    window.location.href = "Exit_Page.html";
+
+});
+
+// INITIALIZE ACCOUNT
+updateAccount();
+
+// PRODUCT LOGIN REQUIREMENT
+const productButton = document.getElementById("productButton");
+
+productButton.addEventListener("click", function(event) {
+
+    const savedUser = localStorage.getItem("dragonUser");
+
+    if (!savedUser) {
+
+        event.preventDefault();
+
+        alert("Login Required");
+
+        window.location.href = "Login_Page.html";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
