@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+
+    <title>Leave Confirmation</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F5EBD8;
+            color: #493727;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        .exit-card {
+            width: 100%;
+            max-width: 380px;
+            padding: 35px 25px;
+            background: #E9D9B8;
+            color: #493727;
+            text-align: center;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(73, 55, 39, 0.12);
+        }
+
+        .exit-icon {
+            font-size: 100px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 0 0 15px;
+            color: #A51F1F;
+            font-family: "Shojumaru", cursive;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        p {
+            margin: 0 0 25px;
+            color: #493727;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 7px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .leave-btn {
+            background: #A51F1F;
+        }
+
+        .leave-btn:hover {
+            background: #821818;
+        }
+
+        .stay-btn {
+            background: #8B642C;
+        }
+
+        .stay-btn:hover {
+            background: #705020;
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="exit-card">
+
+        <div class="exit-icon">🚪</div>
+
+        <h1>Leave Confirmation</h1>
+
+        <p>
+            Oh no, are you sure you wanna leave?
+            Your login page will still be here if you change your mind.
+        </p>
+
+        <div class="buttons">
+
+            <button class="leave-btn" id="leaveButton" type="button">
+                ⇥ Yea, I'm sure
+            </button>
+
+            <button class="stay-btn" id="stayButton" type="button">
+                ↶ I take it back
+            </button>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        // CONFIRM LOG OUT
+        document.getElementById("leaveButton").addEventListener("click", function() {
+
+            // Remove saved login
+            localStorage.removeItem("dragonUser");
+
+            // Return to main page as logged out
+            window.location.href = "Main_Page.html";
+
+        });
+
+        // CANCEL LOG OUT
+        document.getElementById("stayButton").addEventListener("click", function() {
+
+            // Keep saved login and return to main page
+            window.location.href = "Main_Page.html";
+
+        });
+
+    </script>
+
+</body>
+</html>
