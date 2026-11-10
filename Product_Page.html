@@ -301,7 +301,7 @@
         </p>
 
         <div class="quantity-area">
-          <span class="quantity-label">Jumlah</span>
+          <span class="quantity-label">Quantity</span>
           <div class="quantity-control">
             <button type="button" class="minus" aria-label="Decrease Xiao Long Bao">−</button>
             <span class="quantity-number">0</span>
@@ -336,7 +336,7 @@
         </p>
 
         <div class="quantity-area">
-          <span class="quantity-label">Jumlah</span>
+          <span class="quantity-label">Quantity</span>
           <div class="quantity-control">
             <button type="button" class="minus" aria-label="Decrease Fried Rice">−</button>
             <span class="quantity-number">0</span>
@@ -370,7 +370,7 @@
         </p>
 
         <div class="quantity-area">
-          <span class="quantity-label">Jumlah</span>
+          <span class="quantity-label">Quantity</span>
           <div class="quantity-control">
             <button type="button" class="minus" aria-label="Decrease Green Beans">−</button>
             <span class="quantity-number">0</span>
@@ -405,7 +405,7 @@
         </p>
 
         <div class="quantity-area">
-          <span class="quantity-label">Jumlah</span>
+          <span class="quantity-label">Quantity</span>
           <div class="quantity-control">
             <button type="button" class="minus" aria-label="Decrease Sweet and Sour Pork">−</button>
             <span class="quantity-number">0</span>
@@ -428,7 +428,7 @@
 
       <div class="cart-summary">
         <strong id="cartTotal">Total: Rp 0</strong>
-        <span id="cartCount">Jumlah item: 0</span>
+        <span id="cartCount">Total Items: 0</span>
       </div>
 
       <button type="button" class="checkout-button"
@@ -493,7 +493,7 @@
         "Total: " + rupiah(totalPrice);
 
       document.getElementById("cartCount").textContent =
-        "Jumlah item: " + totalItems;
+        "Total Items: " + totalItems;
 
       checkoutButton.disabled = totalItems === 0;
 
