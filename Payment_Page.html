@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dragons Den - Payment Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5EBD8;
+    color: #493727;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.payment-container {
+    width: 100%;
+    max-width: 430px;
+    padding: 30px 25px;
+    background: #E9D9B8;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(73, 55, 39, 0.12);
+}
+
+.payment-title {
+    margin: 0 0 22px;
+    font-family: "Shojumaru", cursive;
+    font-size: 27px;
+    font-weight: normal;
+    color: #A51F1F;
+    text-align: center;
+}
+
+.section-title {
+    margin: 20px 0 12px;
+    color: #8B642C;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* INPUTS */
+.form-control {
+    width: 100%;
+    min-height: 45px;
+    margin-bottom: 13px;
+    padding: 12px;
+    background: #FFF9EF;
+    color: #493727;
+    border: 1px solid #C9B58F;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: #A98035;
+    box-shadow: 0 0 0 2px rgba(169, 128, 53, 0.12);
+}
+
+.form-control::placeholder {
+    color: #A58D68;
+}
+
+/* ORDER SUMMARY */
+.order-summary {
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #FFF9EF;
+    border-radius: 8px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid #E9D9B8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-name {
+    font-weight: 600;
+    color: #493727;
+}
+
+.order-item-detail {
+    color: #8B7353;
+}
+
+.order-item-price {
+    white-space: nowrap;
+    text-align: right;
+    color: #493727;
+    font-weight: 600;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+    color: #725B40;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.summary-value {
+    color: #493727;
+    text-align: right;
+}
+
+.summary-total {
+    padding-top: 12px;
+    border-top: 1px solid #C9B58F;
+    color: #A51F1F;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* PAYMENT OPTIONS */
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 12px 0 22px;
+}
+
+.payment-option {
+    min-height: 55px;
+    padding: 8px 5px;
+    background: #D8C49D;
+    color: #493727;
+    border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.payment-option:hover {
+    background: #C9B58F;
+}
+
+.payment-option.active {
+    background: #A51F1F;
+    color: white;
+}
+
+/* CHECKOUT */
+.checkout-btn {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    margin: 20px auto 18px;
+    padding: 12px;
+    background: #A51F1F;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background: #821818;
+}
+
+.back-link {
+    display: block;
+    margin: 0 0 15px;
+    color: #8B642C;
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: #A51F1F;
+}
+
+.empty-cart {
+    padding: 15px;
+    background: #FFF9EF;
+    border-radius: 8px;
+    color: #A51F1F;
+    font-size: 13px;
+    text-align: center;
+}
+
+@media (max-width: 400px) {
+    .payment-container {
+        padding: 25px 18px;
+    }
+
+    .payment-title {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="payment-container">
+
+    <h1 class="payment-title">Payment Details</h1>
+
+    <form id="paymentForm">
+
+        <h2 class="section-title">Customer Details</h2>
+
+        <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Name"
+            autocomplete="name"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Email"
+            autocomplete="email"
+            required
+        >
+
+        <h2 class="section-title">Your Order</h2>
+
+        <div class="order-summary" id="orderSummary">
+            Loading order...
+        </div>
+
+        <div class="summary-row">
+            <span>Total Items:</span>
+            <span class="summary-value" id="totalItems">0</span>
+        </div>
+
+        <div class="summary-row summary-total">
+            <span>Total:</span>
+            <span class="summary-value" id="totalPrice">Rp 0</span>
+        </div>
+
+        <h2 class="section-title">Payment Method</h2>
+
+        <div class="payment-options">
+
+            <button type="button"
+                class="payment-option active"
+                data-method="Card"
+                aria-pressed="true">
+                <i class="bi bi-credit-card-2-front"></i><br>
+                Card
+            </button>
+
+            <button type="button"
+                class="payment-option"
+                data-method="PayPal"
+                aria-pressed="false">
+                <i class="bi bi-paypal"></i><br>
+                PayPal
+            </button>
+
+            <button type="button"
+                class="payment-option"
+                data-method="Apple Pay"
+                aria-pressed="false">
+                <i class="bi bi-apple"></i><br>
+                Apple Pay
+            </button>
+
+        </div>
+
+        <button type="submit" class="checkout-btn">
+            <i class="bi bi-cash-coin"></i>
+            Confirm Order
+        </button>
+
+    </form>
+
+    <a href="Product_Page.html" class="back-link">
+        ← Back to Products
+    </a>
+
+</main>
+
+<script>
+const rupiah = amount =>
+    "Rp " + amount.toLocaleString("id-ID");
+
+const orderSummary = document.getElementById("orderSummary");
+const totalItemsElement = document.getElementById("totalItems");
+const totalPriceElement = document.getElementById("totalPrice");
+const checkoutButton = document.querySelector(".checkout-btn");
+
+let selectedPayment = "Card";
+
+/* LOAD THE LATEST SAVED ORDER */
+function getSavedCart() {
+    return JSON.parse(
+        localStorage.getItem("dragonCart") || "null"
+    );
+}
+
+/* DISPLAY ORDER */
+function displayOrder() {
+    const savedCart = getSavedCart();
+
+    if (!savedCart || !savedCart.items || savedCart.items.length === 0) {
+        orderSummary.innerHTML =
+            '<div class="empty-cart">Your cart is empty. Please choose some products first.</div>';
+
+        totalItemsElement.textContent = "0";
+        totalPriceElement.textContent = "Rp 0";
+
+        checkoutButton.disabled = true;
+        checkoutButton.style.opacity = "0.5";
+
+        return;
+    }
+
+    let itemsHTML = "";
+
+    savedCart.items.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+
+        itemsHTML += `
+            <div class="order-item">
+                <div>
+                    <div class="order-item-name">${item.name}</div>
+                    <div class="order-item-detail">
+                        ${rupiah(item.price)} × ${item.quantity}
+                    </div>
+                </div>
+
+                <div class="order-item-price">
+                    ${rupiah(itemTotal)}
+                </div>
+            </div>
+        `;
+    });
+
+    orderSummary.innerHTML = itemsHTML;
+
+    totalItemsElement.textContent = savedCart.totalItems;
+    totalPriceElement.textContent = rupiah(savedCart.totalPrice);
+
+    checkoutButton.disabled = false;
+    checkoutButton.style.opacity = "1";
+}
+
+/* SELECT PAYMENT METHOD */
+document.querySelectorAll(".payment-option").forEach(button => {
+    button.addEventListener("click", () => {
+        selectedPayment = button.dataset.method;
+
+        document.querySelectorAll(".payment-option").forEach(item => {
+            item.classList.remove("active");
+            item.setAttribute("aria-pressed", "false");
+        });
+
+        button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
+    });
+});
+
+/* CONFIRM ORDER */
+document.getElementById("paymentForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!event.target.checkValidity()) {
+        event.target.reportValidity();
+        return;
+    }
+
+    const savedCart = getSavedCart();
+
+    if (!savedCart || !savedCart.items || savedCart.items.length === 0) {
+        alert("Your cart is empty. Please select products first.");
+        return;
+    }
+
+    const customerName = document.getElementById("name").value.trim();
+
+    alert(
+        "Order Confirmed!\n\n" +
+        "Name: " + customerName +
+        "\nTotal Items: " + savedCart.totalItems +
+        "\nPayment Method: " + selectedPayment +
+        "\nTotal: " + rupiah(savedCart.totalPrice)
+    );
+
+    // Clear the completed order, but keep the login information.
+    localStorage.removeItem("dragonCart");
+
+    // Return to the main page.
+    // dragonUser is not removed, so the customer stays logged in.
+    window.location.href = "Main_Page.html";
+});
+
+displayOrder();
+</script>
+
+</body>
+</html>
