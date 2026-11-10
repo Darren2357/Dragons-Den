@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dragons Den - Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5EBD8;
+    color: #493727;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* LOGIN CONTAINER */
+.login-container {
+    width: 100%;
+    max-width: 390px;
+    padding: 35px 28px;
+    background: #E9D9B8;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(73, 55, 39, 0.12);
+    text-align: center;
+}
+
+/* WEBSITE TITLE */
+.website-title {
+    margin: 0 0 15px;
+    font-family: "Shojumaru", cursive;
+    font-size: 35px;
+    font-weight: normal;
+    color: #A51F1F;
+}
+
+/* LOGIN TEXT */
+.login-title {
+    margin: 10px 0 8px;
+    color: #8B642C;
+    font-size: 23px;
+}
+
+.subtitle {
+    margin-bottom: 24px;
+    color: #725B40;
+    font-size: 13px;
+}
+
+/* SOCIAL BUTTONS */
+.social-buttons {
+    display: grid;
+    gap: 11px;
+    margin-bottom: 23px;
+}
+
+.social-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.social-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.google-btn {
+    background: #A51F1F;
+}
+
+.facebook-btn {
+    background: #315C91;
+}
+
+.x-btn {
+    background: #493727;
+}
+
+/* DIVIDER */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 20px;
+    color: #8B7353;
+    font-size: 11px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #C9B58F;
+}
+
+/* INPUT FIELDS */
+.input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    transform: translateY(-50%);
+    color: #A58D68;
+    pointer-events: none;
+}
+
+.email-input,
+.password-input {
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #C9B58F;
+    border-radius: 7px;
+    background: #FFF9EF;
+    color: #493727;
+    font-size: 14px;
+    outline: none;
+}
+
+.email-input:focus,
+.password-input:focus {
+    border-color: #A98035;
+    box-shadow: 0 0 0 2px rgba(169, 128, 53, 0.12);
+}
+
+.email-input::placeholder,
+.password-input::placeholder {
+    color: #A58D68;
+}
+
+/* CONTINUE BUTTON */
+.continue-btn {
+    width: 100%;
+    min-height: 45px;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #A51F1F;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.continue-btn:hover {
+    background: #821818;
+}
+
+/* BACK LINK */
+.back-link {
+    display: block;
+    margin-top: 22px;
+    color: #8B642C;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: none;
+}
+
+/* SMALL NOTE */
+.small-note {
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: #8B7353;
+    font-size: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 400px) {
+    .login-container {
+        padding: 28px 20px;
+    }
+
+    .website-title {
+        font-size: 29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="login-container">
+
+    <h1 class="website-title">Dragons Den</h1>
+
+    <h2 class="login-title">Welcome Back!</h2>
+
+    <p class="subtitle">
+        Sign in to continue to Dragons Den.
+    </p>
+
+    <!-- SOCIAL LOGIN BUTTONS -->
+    <div class="social-buttons">
+
+        <button type="button"
+        class="social-btn google-btn"
+        data-provider="google">
+
+            <i class="fa-brands fa-google"></i>
+            Continue with Google
+
+        </button>
+
+        <button type="button"
+        class="social-btn facebook-btn"
+        data-provider="facebook">
+
+            <i class="fa-brands fa-facebook-f"></i>
+            Continue with Facebook
+
+        </button>
+
+        <button type="button"
+        class="social-btn x-btn"
+        data-provider="x">
+
+            <i class="fa-brands fa-x-twitter"></i>
+            Continue with X
+
+        </button>
+
+    </div>
+
+    <div class="divider">OR USE EMAIL</div>
+
+    <!-- EMAIL AND PASSWORD -->
+    <form id="loginForm">
+
+        <div class="input-wrapper">
+
+            <i class="fa-solid fa-envelope input-icon"></i>
+
+            <input
+                type="email"
+                id="email"
+                class="email-input"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+        </div>
+
+        <div class="input-wrapper">
+
+            <i class="fa-solid fa-lock input-icon"></i>
+
+            <input
+                type="password"
+                id="password"
+                class="password-input"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                minlength="6"
+                required
+            >
+
+        </div>
+
+        <button type="submit" class="continue-btn">
+
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Continue
+
+        </button>
+
+    </form>
+
+    <!-- BACK TO HOME -->
+    <a href="Main_Page.html" class="back-link">
+        ← Back to Home
+    </a>
+
+    <p class="small-note">
+        Welcome to Dragons Den Chinese Cuisine.
+    </p>
+
+</main>
+
+<!-- LOGIN SYSTEM -->
+<script>
+
+// SOCIAL LOGIN
+document.querySelectorAll("[data-provider]").forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        localStorage.setItem("dragonUser", JSON.stringify({
+            displayName: "User"
+        }));
+
+        window.location.href = "Main_Page.html";
+
+    });
+
+});
+
+// EMAIL LOGIN
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+
+    localStorage.setItem("dragonUser", JSON.stringify({
+        displayName: email
+    }));
+
+    window.location.href = "Main_Page.html";
+
+});
+
+</script>
+
+</body>
+</html>
